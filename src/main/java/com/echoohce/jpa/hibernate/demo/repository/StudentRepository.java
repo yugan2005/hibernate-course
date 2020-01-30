@@ -73,15 +73,15 @@ public class StudentRepository {
   }
 
   public void saveStudentWithPassport() {
+    Student student = new Student("XZH");
+    student = save(student);
     Passport passport = new Passport("B1222");
+    passport.setStudent(student);
     em.persist(passport);
-    Student student = new Student("XZH", passport);
-    save(student);
   }
 
   public void addStudentWithCourses(Student student, Course course) {
     course = course.toBuilder().student(student).build();
-//    course = em.merge(course);
     student = student.toBuilder().course(course).build();
     em.persist(student);
   }

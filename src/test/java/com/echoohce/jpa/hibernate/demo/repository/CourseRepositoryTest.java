@@ -12,6 +12,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @Slf4j
 @SpringBootTest(classes = DemoApplication.class)
+@DirtiesContext
 class CourseRepositoryTest {
 
   @Autowired
@@ -24,7 +25,7 @@ class CourseRepositoryTest {
 
   @Test
   void deleteById() {
-    final Long id = 10002L;
+    final Long id = 10005L;
     assertNotNull(courseRepository.findById(id));
     courseRepository.deleteById(id);
     assertNull(courseRepository.findById(id));

@@ -3,8 +3,8 @@ package com.echoohce.jpa.hibernate.demo.entity;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.MapsId;
 import javax.persistence.OneToOne;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -24,14 +24,14 @@ public class Passport {
 
   @Id
   @Setter(AccessLevel.NONE)
-  @GeneratedValue
   private Long id;
 
   @Column(nullable = false)
   private String number;
 
   @ToString.Exclude
-  @OneToOne(mappedBy = "passport", fetch = FetchType.LAZY)
+  @OneToOne(fetch = FetchType.LAZY)
+  @MapsId
   private Student student;
 
   public Passport(String number) {

@@ -9,10 +9,12 @@ import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.DirtiesContext;
 
 
 @Slf4j
 @SpringBootTest
+@DirtiesContext
 public class StudentRepositoryTest {
 
   @Autowired
@@ -24,15 +26,15 @@ public class StudentRepositoryTest {
   @Test
   @Transactional
   void getStudentWithPassport() {
-    Student student = entityManager.find(Student.class, 40001);
+    Student student = entityManager.find(Student.class, 40001L);
     log.info("student info -> {}", student);
-    log.info("passport info -> {}", student.getPassport());
+    log.info("passport info -> {}", entityManager.find(Passport.class, student.getId()));
   }
 
   @Test
   @Transactional
   void getPasswordWithStudent() {
-    Passport passport = entityManager.find(Passport.class, 20003L);
+    Passport passport = entityManager.find(Passport.class, 40003L);
     log.info("passport info -> {}", passport);
     log.info("student info -> {}", passport.getStudent());
   }
@@ -46,7 +48,7 @@ public class StudentRepositoryTest {
 
     log.info("The other side");
 
-    Student student = entityManager.find(Student.class, 40004);
+    Student student = entityManager.find(Student.class, 40004L);
     log.info("student -> {}", student);
     log.info("courses of the student -> {}", student.getCourses());
   }
