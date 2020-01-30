@@ -6,6 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.DirtiesContext;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -30,6 +31,7 @@ class CourseRepositoryTest {
   }
 
   @Test
+  @DirtiesContext
   void save() {
     String newCourseName = "Insert new course";
     Course course = new Course();
@@ -38,7 +40,7 @@ class CourseRepositoryTest {
 
     assertTrue(courseRepository.findAll().stream().
         anyMatch(c -> newCourseName.equals(c.getName())));
-    Long id = courseRepository.findByName(newCourseName).get(0).getId();
+    Long id = courseRepository.findAllByName(newCourseName).get(0).getId();
     log.info("new course Id -> {}", id);
 
     Course savedCourse = courseRepository.findById(id);
@@ -46,5 +48,11 @@ class CourseRepositoryTest {
     savedCourse.setName(differentName);
     courseRepository.save(savedCourse);
     assertEquals(differentName, courseRepository.findById(id).getName());
+  }
+
+  @Test
+  @DirtiesContext
+  void playWithEM() {
+    courseRepository.playWithEM();
   }
 }
