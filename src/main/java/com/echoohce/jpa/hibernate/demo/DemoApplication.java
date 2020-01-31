@@ -1,11 +1,15 @@
 package com.echoohce.jpa.hibernate.demo;
 
 import com.echoohce.jpa.hibernate.demo.entity.Course;
+import com.echoohce.jpa.hibernate.demo.entity.FulltimeEmployee;
+import com.echoohce.jpa.hibernate.demo.entity.ParttimeEmployee;
 import com.echoohce.jpa.hibernate.demo.entity.Review;
 import com.echoohce.jpa.hibernate.demo.entity.Student;
 import com.echoohce.jpa.hibernate.demo.repository.CourseRepository;
+import com.echoohce.jpa.hibernate.demo.repository.EmployeeRepository;
 import com.echoohce.jpa.hibernate.demo.repository.StudentRepository;
 import com.google.common.collect.ImmutableList;
+import java.math.BigDecimal;
 import java.util.List;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
@@ -18,10 +22,13 @@ public class DemoApplication implements CommandLineRunner {
 
   private final CourseRepository courseRepository;
   private final StudentRepository studentRepository;
+  private final EmployeeRepository employeeRepository;
 
-  public DemoApplication(CourseRepository courseRepository, StudentRepository studentRepository) {
+  public DemoApplication(CourseRepository courseRepository, StudentRepository studentRepository,
+      EmployeeRepository employeeRepository) {
     this.courseRepository = courseRepository;
     this.studentRepository = studentRepository;
+    this.employeeRepository = employeeRepository;
   }
 
   public static void main(String[] args) {
@@ -63,6 +70,13 @@ public class DemoApplication implements CommandLineRunner {
 
     Student student = Student.builder().name("peggy").build();
     studentRepository.addStudentWithCourses(student, addedCourse);
+
+    FulltimeEmployee fulltimeEmployee = new FulltimeEmployee("full time", new BigDecimal("200000.00"));
+    ParttimeEmployee parttimeEmployee = new ParttimeEmployee("part time", new BigDecimal("45.00"));
+    employeeRepository.saveEmployee(fulltimeEmployee);
+    employeeRepository.saveEmployee(parttimeEmployee);
+    log.info("employee list -> {}", employeeRepository.listAllEmployees());
+
     System.out.println("end");
   }
 }
