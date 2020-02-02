@@ -1,7 +1,9 @@
 package com.echoohce.jpa.hibernate.demo.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.time.LocalDateTime;
 import java.util.Set;
+import javax.persistence.Cacheable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -28,6 +30,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 @ToString
 @NamedQueries(value = {@NamedQuery(name = "course_get_all_courses", query = "select c from Course c"),
     @NamedQuery(name = "course_get_steps_courses", query = "select c from Course c where c.name like '%steps'")})
+@Cacheable
 public class Course {
 
   @Id
@@ -44,6 +47,7 @@ public class Course {
 
   @CreationTimestamp
   @ToString.Exclude
+  @JsonIgnore
   private LocalDateTime createdTime;
 
   @OneToMany(mappedBy = "course")
