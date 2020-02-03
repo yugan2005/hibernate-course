@@ -4,6 +4,7 @@ import com.echoohce.jpa.hibernate.demo.entity.Course;
 import com.echoohce.jpa.hibernate.demo.entity.FulltimeEmployee;
 import com.echoohce.jpa.hibernate.demo.entity.ParttimeEmployee;
 import com.echoohce.jpa.hibernate.demo.entity.Review;
+import com.echoohce.jpa.hibernate.demo.entity.ReviewRating;
 import com.echoohce.jpa.hibernate.demo.entity.Student;
 import com.echoohce.jpa.hibernate.demo.repository.CourseRepository;
 import com.echoohce.jpa.hibernate.demo.repository.EmployeeRepository;
@@ -60,10 +61,10 @@ public class DemoApplication implements CommandLineRunner {
 
     studentRepository.saveStudentWithPassport();
 
-    Review review = new Review("3", "I don't like it so much");
+    Review review = new Review(ReviewRating.THREE, "I don't like it so much");
     List<Review> reviewList = ImmutableList.of(
-        new Review("2.5", "Really boring stuff"),
-        new Review("4.7", "It is a useful course"));
+        new Review(ReviewRating.TWO, "Really boring stuff"),
+        new Review(ReviewRating.FOUR, "It is a useful course"));
 
     courseRepository.addReviewsToCourseByCourseId(10004L, reviewList);
     courseRepository.addReviewToCourseByCourseId(10002L, review);

@@ -4,9 +4,9 @@ insert into course(id, name, last_updated_time, created_time, is_deleted) values
 insert into course(id, name, last_updated_time, created_time, is_deleted) values(10004, 'Microservice in 50 steps', sysdate(), sysdate(), false);
 insert into course(id, name, last_updated_time, created_time, is_deleted) values(10005, 'be deleted', sysdate(), sysdate(), false);
 
-insert into review (id, rating, description, course_id) values (30001, '5', 'great course', 10001);
-insert into review (id, rating, description, course_id) values (30002, '4', 'not bad course', 10001);
-insert into review (id, rating, description, course_id) values (30003, '5', 'awesome course', 10003);
+insert into review (id, rating, description, course_id) values (30001, 'FIVE', 'great course', 10001);
+insert into review (id, rating, description, course_id) values (30002, 'FOUR', 'not bad course', 10001);
+insert into review (id, rating, description, course_id) values (30003, 'FIVE', 'awesome course', 10003);
 
 insert into student (id, name) values (40001, 'Ross');
 insert into student (id, name) values (40002, 'Tiffany');
