@@ -33,7 +33,10 @@ import org.hibernate.annotations.Where;
 @Setter
 @ToString
 @NamedQueries(value = {@NamedQuery(name = "course_get_all_courses", query = "select c from Course c"),
-    @NamedQuery(name = "course_get_steps_courses", query = "select c from Course c where c.name like '%steps'")})
+    @NamedQuery(name = "course_get_steps_courses", query = "select c from Course c where c.name like '%steps'"),
+    @NamedQuery(name = "course_get_all_courses_with_students",
+        query = "select c from Course c join fetch c.students as s")
+})
 @Cacheable
 @SQLDelete(sql = "UPDATE course AS c SET c.is_deleted=true where c.id=?")
 @Where(clause = "is_deleted=false")
