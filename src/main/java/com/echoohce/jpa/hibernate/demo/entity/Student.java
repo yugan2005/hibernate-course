@@ -2,6 +2,7 @@ package com.echoohce.jpa.hibernate.demo.entity;
 
 import java.util.Set;
 import javax.persistence.Column;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -41,6 +42,9 @@ public class Student {
   @Setter(AccessLevel.NONE)
   @ToString.Exclude
   private Set<Course> courses;
+
+  @Embedded
+  private Address address;
 
   @Builder(toBuilder = true)
   public Student(Long id, String name, @Singular Set<Course> courses) {

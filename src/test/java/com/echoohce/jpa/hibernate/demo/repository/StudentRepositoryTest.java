@@ -1,5 +1,6 @@
 package com.echoohce.jpa.hibernate.demo.repository;
 
+import com.echoohce.jpa.hibernate.demo.entity.Address;
 import com.echoohce.jpa.hibernate.demo.entity.Course;
 import com.echoohce.jpa.hibernate.demo.entity.Passport;
 import com.echoohce.jpa.hibernate.demo.entity.Student;
@@ -10,6 +11,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.DirtiesContext;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 
 @Slf4j
@@ -51,6 +54,20 @@ public class StudentRepositoryTest {
     Student student = entityManager.find(Student.class, 40004L);
     log.info("student -> {}", student);
     log.info("courses of the student -> {}", student.getCourses());
+  }
+
+  @Test
+  void addAddressToStudent() {
+    Student student = studentRepository.findById(40002L);
+    String city = "mountain view";
+    String line = "1023 Dale Ave";
+    String zipcode = "94040";
+    Address address = Address.builder().addressCity(city).addressLine(line).
+        addressZipcode(zipcode).build();
+    student.setAddress(address);
+    Student savedStudent = studentRepository.save(student);
+    assertEquals(savedStudent, student);
+    log.info("Student address is -> {}", savedStudent.getAddress());
   }
 
 }
