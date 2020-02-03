@@ -1,8 +1,8 @@
-insert into course(id, name, last_updated_time, created_time) values(10001, 'JPA in 50 steps', sysdate(), sysdate());
-insert into course(id, name, last_updated_time, created_time) values(10002, 'Hibernate in 50 steps', sysdate(), sysdate());
-insert into course(id, name, last_updated_time, created_time) values(10003, 'Spring in 50 steps', sysdate(), sysdate());
-insert into course(id, name, last_updated_time, created_time) values(10004, 'Microservice in 50 steps', sysdate(), sysdate());
-insert into course(id, name, last_updated_time, created_time) values(10005, 'be deleted', sysdate(), sysdate());
+insert into course(id, name, last_updated_time, created_time, is_deleted) values(10001, 'JPA in 50 steps', sysdate(), sysdate(), false);
+insert into course(id, name, last_updated_time, created_time, is_deleted) values(10002, 'Hibernate in 50 steps', sysdate(), sysdate(), false);
+insert into course(id, name, last_updated_time, created_time, is_deleted) values(10003, 'Spring in 50 steps', sysdate(), sysdate(), false);
+insert into course(id, name, last_updated_time, created_time, is_deleted) values(10004, 'Microservice in 50 steps', sysdate(), sysdate(), false);
+insert into course(id, name, last_updated_time, created_time, is_deleted) values(10005, 'be deleted', sysdate(), sysdate(), false);
 
 insert into review (id, rating, description, course_id) values (30001, '5', 'great course', 10001);
 insert into review (id, rating, description, course_id) values (30002, '4', 'not bad course', 10001);

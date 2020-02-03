@@ -33,7 +33,9 @@ public class CourseRepository {
 
   public void deleteById(Long id) {
     Course course = findById(id);
+    log.info("before delete the isDeleted flag is -> {}", course.isDeleted());
     em.remove(course);
+    log.info("after delete the isDeleted flag is -> {}", course.isDeleted());
   }
 
   public Course save(Course course) {
